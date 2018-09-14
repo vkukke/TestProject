@@ -9,7 +9,7 @@ namespace PrimeService.Tests
         public void ReturnsFalseWhenValueIs1()
         {
             PrimeService p = new PrimeService();
-            Assert.IsTrue(p.IsPrime(1));
+            Assert.IsFalse(p.IsPrime(1))
         }
     }
 }
