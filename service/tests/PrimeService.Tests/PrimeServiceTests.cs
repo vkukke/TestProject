@@ -11,5 +11,15 @@ namespace PrimeService.Tests
             PrimeService p = new PrimeService();
             Assert.IsFalse(p.IsPrime(1));
         }
+
+        [TestMethod]
+        [DataRow(0)]
+        [DataRow(1)]
+        [DataRow(2)]
+        public void ReturnsFalseWhenValueIs2(int value)
+        {
+            PrimeService p = new PrimeService();
+            Assert.IsFalse(p.IsPrime(value));
+        }
     }
 }
