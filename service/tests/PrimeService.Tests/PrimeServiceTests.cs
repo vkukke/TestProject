@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PrimeService.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class PrimeServiceTests
     {
         [TestMethod]
         public void ReturnsFalseWhenValueIs1()
