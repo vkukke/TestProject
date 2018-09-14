@@ -7,7 +7,7 @@ namespace PrimeService
         public bool IsPrime(int num)
         {
             if (num <= 2)
-              return true;
+              return false;
             throw new NotImplementedException();
         }
     }
