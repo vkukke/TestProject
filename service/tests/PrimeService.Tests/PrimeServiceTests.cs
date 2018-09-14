@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace PrimeService.Tests
 {
@@ -20,6 +21,14 @@ namespace PrimeService.Tests
         {
             PrimeService p = new PrimeService();
             Assert.IsFalse(p.IsPrime(value));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+       public void ReturnsNotImplementedWhenValueIsGreaterThan2()
+        {
+            PrimeService p = new PrimeService();
+            p.IsPrime(3);
         }
     }
 }
