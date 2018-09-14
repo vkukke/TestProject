@@ -8,7 +8,7 @@ namespace PrimeService.Tests
         [TestMethod]
         public void ReturnsFalseWhenValueIs1()
         {
-            PrimeService p = new PrimeService();
+            PrimeService p = new PrimeService()
             Assert.IsTrue(p.IsPrime(1))
         }
     }
