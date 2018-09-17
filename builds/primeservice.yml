@@ -29,3 +29,9 @@ steps:
     command: test
     projects: '**/*tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    
+ - task: PublishBuildArtifacts@1
+   inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: drop
+  
