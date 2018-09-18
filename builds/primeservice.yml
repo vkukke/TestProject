@@ -34,12 +34,6 @@ steps:
     projects: '**/*tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
-  displayName: Run CredScan
-  inputs:
-     suppressionsFile: '.config/CredScanSuppressions.json'
-     debugMode: false
-    
 #- task: PublishBuildArtifacts@1
 #  inputs:
 #    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
