@@ -13,6 +13,7 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@0
+  displayName: Install nuget tool
 
 - task: NuGetCommand@2
   displayName: Resolve nuget dependencies
@@ -20,19 +21,25 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: Build sources
   inputs:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: Run Unit Tests
+  displayName: Run unit tests
   inputs:
     command: test
     projects: '**/*tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
+- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
+  displayName: Run CredScan
+  inputs:
+     suppressionsFile: '.config/CredScanSuppressions.json'
+     debugMode: false
+    
 #- task: PublishBuildArtifacts@1
 #  inputs:
 #    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
