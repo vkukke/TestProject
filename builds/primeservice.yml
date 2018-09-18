@@ -35,8 +35,9 @@ steps:
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
     
 - task: PublishBuildArtifacts@1
+  displayName: Publish build artifacts
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    pathtoPublish: '$(Build.SourcesDirectory)/README.md'
     artifactName: 'drop'
     publishLocation: 'Azure Pipelines/TFS'
   
