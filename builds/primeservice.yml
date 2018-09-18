@@ -40,5 +40,5 @@ steps:
     pathtoPublish: '$(Build.SourcesDirectory)/README.md'
     artifactName: 'drop'
     publishLocation: 'Azure Artifacts/TFS'
-    artificatType: Server
+    artifacttype: Server
   
