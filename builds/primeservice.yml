@@ -39,5 +39,5 @@ steps:
   inputs:
     pathtoPublish: '$(Build.SourcesDirectory)/README.md'
     artifactName: 'drop'
-    publishLocation: 'Azure Pipelines/TFS'
+    publishLocation: 'Azure Artifacts/TFS'
   
