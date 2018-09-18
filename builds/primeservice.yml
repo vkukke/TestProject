@@ -33,12 +33,8 @@ steps:
     command: test
     projects: '**/*tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-    
-- task: PublishBuildArtifacts@1
-  displayName: Publish build artifacts
-  inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/README.md'
-    artifactName: 'drop'
-    publishLocation: 'Container'
-    artifacttype: Server
+ 
+ - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0 
+   displayName: 'Component Detection' 
+   inputs: governanceProduct: 'TestProject'
   
