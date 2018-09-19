@@ -33,7 +33,13 @@ steps:
     command: test
     projects: '**/*tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
- 
+
+- task: DotNetCoreCLI@2
+  displayName: Prepare publish artifacts
+  inputs:
+    command: publish
+    arguments: '--output $(Build.ArtifactStagingDirectory)'
+    
 - task: PublishBuildArtifacts@2
   displayName: Publish artifacts
   inputs: 
