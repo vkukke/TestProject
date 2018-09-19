@@ -39,7 +39,7 @@ steps:
   inputs:
     command: publish
     publishWebProjects: false
-    projects: '**/*src/*.csproj'
+    projects: '**/*srcs/*.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     
 - task: PublishBuildArtifacts@1
