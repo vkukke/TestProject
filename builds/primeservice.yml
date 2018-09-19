@@ -42,9 +42,10 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     
-#- task: PublishBuildArtifacts@1
-#displayName: Publish artifacts
-#  inputs: 
-#     artifactName: deploy
-#     publishLocation: container
+- task: PublishBuildArtifacts@1
+  displayName: Publish artifacts
+  inputs:
+     pathToPublish: $(Build.ArtifactStagingDirectory)
+     artifactName: deploy
+     publishLocation: container
   
