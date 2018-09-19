@@ -34,7 +34,10 @@ steps:
     projects: '**/*tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
  
- - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0 
-   displayName: 'Component Detection' 
-   inputs: governanceProduct: 'TestProject'
+ - task: DotNetCoreCLI@2
+   displayName: Publish artifacts
+   inputs: 
+      pathToPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: deploy
+      artifactType: container
   
