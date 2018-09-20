@@ -31,8 +31,8 @@ steps:
   displayName: Run unit tests
   inputs:
     command: test
-    projects:'**/*tests/*.csproj'
-    arguments:'--configuration $(buildConfiguration) --collect "Code coverage"'
+    projects: '**/*tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
   
 - task: PublishBuildArtifacts@1
   displayName: Publish artifacts
