@@ -25,27 +25,19 @@ steps:
   inputs:
     command: build
     projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)\prod'
 
 - task: DotNetCoreCLI@2
   displayName: Run unit tests
   inputs:
     command: test
     projects: '**/*tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-
-- task: DotNetCoreCLI@2
-  displayName: Prepare publish artifacts
-  inputs:
-    command: publish
-    publishWebProjects: false
-    projects: '**/*srcs/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --output $(Build.ArtifactStagingDirectory)\tests'
+  
 - task: PublishBuildArtifacts@1
   displayName: Publish artifacts
   inputs:
-     pathToPublish: $(Build.ArtifactStagingDirectory)
+     pathToPublish: $(Build.ArtifactStagingDirectory)\prod
      artifactName: deploy
      publishLocation: container
   
