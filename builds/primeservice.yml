@@ -24,7 +24,7 @@ steps:
   displayName: Build sources
   inputs:
     command: build
-    projects: '**/src/*.csproj';-:**/*.Tests.csproj
+    projects: **/*.csproj;-:**/*.Tests.csproj
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)\prod'
 
 - task: DotNetCoreCLI@2
@@ -38,6 +38,6 @@ steps:
   displayName: Publish artifacts
   inputs:
      pathToPublish: $(Build.ArtifactStagingDirectory)\prod
-     artifactName: deploy
+     artifactName: drop
      publishLocation: container
   
