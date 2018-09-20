@@ -24,8 +24,7 @@ steps:
   displayName: Build sources
   inputs:
     command: build
-    projects: '**/*.csproj'
-              !'**/*.Tests.csproj'
+    projects: '**/*.csproj';!'**/*.Tests.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)\prod'
 
 - task: DotNetCoreCLI@2
