@@ -27,14 +27,14 @@ steps:
   inputs:
     command: build
     projects:'**/*.csproj;-:!**/*.Tests.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(sourcesOutput)'
+    arguments:'--configuration $(buildConfiguration) --output $(sourcesOutput)'
 
 - task: DotNetCoreCLI@2
   displayName: Run unit tests
   inputs:
     command: test
-    projects: '**/*tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --output $(testsOutput)'
+    projects:'**/*tests/*.csproj'
+    arguments:'--configuration $(buildConfiguration) --collect "Code coverage" --output $(testsOutput)'
   
 - task: PublishBuildArtifacts@1
   displayName: Publish artifacts
