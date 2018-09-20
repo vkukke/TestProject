@@ -27,8 +27,8 @@ steps:
   inputs:
     command: build
     projects:
-     -'**/*.csproj'
-     -!'**/*.Tests.csproj'
+     -**/*.csproj
+     -!**/*.Tests.csproj
     arguments: '--configuration $(buildConfiguration) --output $(sourcesOutput)'
 
 - task: DotNetCoreCLI@2
