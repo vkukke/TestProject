@@ -39,7 +39,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish artifacts
   inputs:
-     pathToPublish: $(sourcesOutput)
+     pathToPublish: $(Build.ArtifactStagingDirectory)
      artifactName: drop
      publishLocation: container
   
