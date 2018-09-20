@@ -10,10 +10,6 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  sourceProjects: 
-     -'**/*.csproj'
-     -!'**/*.Tests.csproj'
-  testProjects: '**/*tests/*.csproj'
   sourcesOutput: '$(Build.ArtifactStagingDirectory)\prod'
   testsOutput: '$(Build.ArtifactStagingDirectory)\tests'
 
@@ -30,14 +26,16 @@ steps:
   displayName: Build sources
   inputs:
     command: build
-    projects: $(srcProjects)
+    projects: |
+     '**/*.csproj'
+     !'**/*.Tests.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(sourcesOutput)'
 
 - task: DotNetCoreCLI@2
   displayName: Run unit tests
   inputs:
     command: test
-    projects: $(testProjects)
+    projects: '**/*tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --output $(testsOutput)'
   
 - task: PublishBuildArtifacts@1
