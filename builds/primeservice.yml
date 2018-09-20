@@ -26,7 +26,7 @@ steps:
   displayName: Build sources
   inputs:
     command: build
-    projects:'**/*.csproj;-:!**/*.Tests.csproj'
+    projects:'**/*.csproj'
     arguments:'--configuration $(buildConfiguration) --output $(sourcesOutput)'
 
 - task: DotNetCoreCLI@2
