@@ -1,0 +1,49 @@
+phases:
+
+################################################################################
+  - phase: windows
+    displayName: windows
+    queue:
+      name: Hosted VS2017
+
+    variables:
+       solution: '**/*.sln'
+       buildPlatform: 'Any CPU'
+       buildConfiguration: 'Release'
+  
+    steps:
+        - task: NuGetToolInstaller@0
+          displayName: Install Nuget Tool
+
+        - task: DotNetCoreCLI@2
+          displayName: Restore Dependencies
+          inputs:
+            command: restore
+            projects: |
+              **/*.csproj
+              !**/*tests/*.csproj
+            arguments: '--configuration $(buildConfiguration)'
+
+        - task: DotNetCoreCLI@2
+          displayName: Build and publish
+          inputs:
+            command: publish
+            projects: |
+              **/*.csproj
+              !**/*tests/*.csproj
+            arguments: '--configuration $(buildConfiguration) --no-restore --output $(Build.ArtifactStagingDirectory)'
+            publishWebProjects: false
+
+        - task: DotNetCoreCLI@2
+          displayName: Run unit tests
+          inputs:
+            command: test
+            projects: '**/*tests/*.csproj'
+            arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+          
+        - task: PublishBuildArtifacts@1
+          displayName: Publish artifacts
+          inputs:
+             pathToPublish: $(Build.ArtifactStagingDirectory)
+             artifactName: drop
+             publishLocation: container
